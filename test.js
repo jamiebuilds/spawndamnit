@@ -1,0 +1,47 @@
+// @flow
+'use strict';
+const test = require('ava');
+const fixtures = require('fixturez');
+const spawn = require('./');
+const f = fixtures(__dirname, { root: __dirname });
+
+test('argv', async t => {
+  let { code, stdout, stderr } = await spawn('node', [f.find('argv.js'), 'foo', 'bar']);
+  t.is(code, 0);
+  t.deepEqual(stdout, Buffer.from('foo bar'));
+  t.deepEqual(stderr, Buffer.from(''));
+});
+
+test('event: stdout', async t => {
+  t.plan(1);
+  let child = spawn('node', [f.find('stdout.js')]);
+  child.on('stdout', data => t.deepEqual(data, Buffer.from('some stdout')));
+  child.on('stderr', data => t.fail('stderr: ' + data));
+  await child;
+});
+
+test('event: stderr', async t => {
+  t.plan(1);
+  let child = spawn('node', [f.find('stderr.js')]);
+  child.on('stdout', data => t.fail('stdout: ' + data));
+  child.on('stderr', data => t.deepEqual(data, Buffer.from('some stderr')));
+  await child;
+});
+
+test('exit code 0', async t => {
+  let res = await spawn('node', [f.find('exit0.js')]);
+  t.is(res.code, 0);
+  t.deepEqual(res.stdout, Buffer.from('some stdout'));
+  t.deepEqual(res.stderr, Buffer.from('some stderr'));
+});
+
+test('exit code 1', async t => {
+  try {
+    await spawn('node', [f.find('exit1.js')]);
+  } catch (err) {
+    t.true(err instanceof spawn.ChildProcessError);
+    t.is(err.code, 1);
+    t.deepEqual(err.stdout, Buffer.from('some stdout'));
+    t.deepEqual(err.stderr, Buffer.from('some stderr'));
+  }
+});
