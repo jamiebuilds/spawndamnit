@@ -1,6 +1,6 @@
 {
   "name": "spawndamnit",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "main": "index.js",
   "description": "Take care of your `spawn()`",
   "author": "James Kyle <me@thejameskyle.com>",
