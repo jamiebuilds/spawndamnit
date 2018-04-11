@@ -36,10 +36,8 @@ test('exit code 0', async t => {
 });
 
 test('exit code 1', async t => {
-  let child = spawn('node', [f.find('exit1.js')]);
-  let err = await t.throws(child);
-  t.true(err instanceof spawn.ChildProcessError);
-  t.is(err.code, 1);
-  t.deepEqual(err.stdout, Buffer.from('some stdout'));
-  t.deepEqual(err.stderr, Buffer.from('some stderr'));
+  let { code, stdout, stderr } = await spawn('node', [f.find('exit1.js')]);
+  t.is(code, 1);
+  t.deepEqual(stdout, Buffer.from('some stdout'));
+  t.deepEqual(stderr, Buffer.from('some stderr'));
 });

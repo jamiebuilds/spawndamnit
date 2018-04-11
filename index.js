@@ -4,7 +4,6 @@ const crossSpawn = require('cross-spawn');
 const onExit = require('signal-exit');
 const EventEmitter = require('events');
 const ChildProcessPromise = require('./promise');
-const ChildProcessError = require('./error');
 
 const activeProcesses = new Set();
 
@@ -47,15 +46,10 @@ function spawn(
 
     child.on('close', code => {
       activeProcesses.delete(child);
-      if (code === 0) {
-        resolve({ code, stdout, stderr });
-      } else {
-        reject(new ChildProcessError({ code, stdout, stderr }));
-      }
+      resolve({ code, stdout, stderr });
     });
   });
 }
 
 module.exports = spawn;
 module.exports.ChildProcessPromise = ChildProcessPromise;
-module.exports.ChildProcessError = ChildProcessError;
