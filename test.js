@@ -41,3 +41,10 @@ test('exit code 1', async t => {
   t.deepEqual(stdout, Buffer.from('some stdout'));
   t.deepEqual(stderr, Buffer.from('some stderr'));
 });
+
+test('encoding', async t => {
+  let res = await spawn('node', [f.find('exit0.js')], { encoding: "utf-8" });
+  t.is(res.code, 0);
+  t.deepEqual(res.stdout, 'some stdout');
+  t.deepEqual(res.stderr, 'some stderr');
+});
