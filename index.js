@@ -46,7 +46,15 @@ function spawn(
 
     child.on('close', code => {
       activeProcesses.delete(child);
-      resolve({ code, stdout, stderr });
+      if (opts?.encoding) {
+        resolve({
+          code,
+          stdout: stdout.toString(opts.encoding),
+          stderr: stderr.toString(opts.encoding)
+        });
+      } else {
+        resolve({ code, stdout, stderr });
+      }
     });
   });
 }
