@@ -46,7 +46,7 @@ function spawn(
 
     child.on('close', code => {
       activeProcesses.delete(child);
-      if (opts?.encoding) {
+      if (opts && opts.encoding) {
         resolve({
           code,
           stdout: stdout.toString(opts.encoding),
