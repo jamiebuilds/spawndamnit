@@ -25,7 +25,7 @@
     "test": "ava"
   },
   "dependencies": {
-    "cross-spawn": "^5.1.0",
+    "cross-spawn": "^7.0.5",
     "signal-exit": "^3.0.2"
   },
   "devDependencies": {
