@@ -1,7 +1,7 @@
 // @flow
 'use strict';
 const crossSpawn = require('cross-spawn');
-const onExit = require('signal-exit');
+const { onExit } = require('signal-exit')
 const EventEmitter = require('events');
 const ChildProcessPromise = require('./promise');
 
