@@ -3,9 +3,9 @@ git:
 sudo: false
 language: node_js
 node_js:
-  - '4'
-  - '6'
-  - '8'
+  - '18'
+  - '20'
+  - '22'
 cache:
   yarn: true
   directories:

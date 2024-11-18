@@ -1,6 +1,6 @@
 {
   "name": "spawndamnit",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "main": "index.js",
   "description": "Take care of your `spawn()`",
   "author": "James Kyle <me@thejameskyle.com>",
@@ -25,11 +25,11 @@
     "test": "ava"
   },
   "dependencies": {
-    "cross-spawn": "^5.1.0",
-    "signal-exit": "^3.0.2"
+    "cross-spawn": "^7.0.5",
+    "signal-exit": "^4.0.1"
   },
   "devDependencies": {
-    "ava": "^0.24.0",
+    "ava": "^4.3.3",
     "fixturez": "^1.1.0",
     "flow-bin": "^0.63.1"
   }
