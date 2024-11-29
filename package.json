@@ -5,7 +5,7 @@
   "description": "Take care of your `spawn()`",
   "author": "James Kyle <me@thejameskyle.com>",
   "repository": "https://github.com/thejameskyle/spawndamnit",
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "keywords": [
     "spawn",
     "child",
